@@ -19,7 +19,7 @@ create table event (
     ticket_price decimal(10, 2),
     event_type enum('movie', 'sports', 'concert'),
     booking_id int,
-    foreign key (venue_id) references venu(venue_id),
+    foreign key (venue_id) references venu(venue_id)
 );
 
 create table customer (
@@ -38,19 +38,18 @@ create table booking (
     num_tickets int,
     total_cost decimal(10, 2),
     booking_date date,
-    foreign key (customer_id) references customer(customer_id),
-);
+    foreign key (customer_id) references customer(customer_id));
 
 insert into venue (venue_id, venue_name, address) values
 (1, 'venue 1', 'address 1'),
 (2, 'venue 2', 'address 2'),
 (3, 'venue 3', 'address 3'),
 (4, 'venue 4', 'address 4'),
-(5, 'venue 5', 'address 5');
-(6, 'venue 6', 'address 6');
-(7, 'venue 7', 'address 7');
-(8, 'venue 8', 'address 8');
-(9, 'venue 9', 'address 9');
+(5, 'venue 5', 'address 5'),
+(6, 'venue 6', 'address 6'),
+(7, 'venue 7', 'address 7'),
+(8, 'venue 8', 'address 8'),
+(9, 'venue 9', 'address 9'),
 (10, 'venue 10', 'address 10');
 
 insert into event (event_id, event_name, event_date, event_time, venue_id, total_seats, available_seats, ticket_price, event_type, booking_id)
@@ -59,11 +58,11 @@ values
 (2, 'event 2', '2024-05-02', '19:00:00', 2, 150, 50, 2000.00, 'sports', 102),
 (3, 'event 3', '2024-05-03', '20:00:00', 3, 300, 200, 1800.00, 'concert', 103),
 (4, 'event 4', '2024-05-04', '21:00:00', 4, 250, 100, 2200.00, 'movie', 104),
-(5, 'event 5', '2024-05-05', '22:00:00', 5, 400, 300, 2500.00, 'concert',  105);
-(6, 'event 6', '2024-05-06', '22:00:00', 5, 400, 300, 2500.00, 'concert', 106);
-(7, 'event 7', '2024-05-07', '22:00:00', 5, 400, 300, 2500.00, 'concert', 107);
-(8, 'event 8', '2024-05-08', '22:00:00', 5, 400, 300, 2500.00, 'concert', 108);
-(9, 'event 9', '2024-05-09', '22:00:00', 5, 400, 300, 2500.00, 'concert', 109);
+(5, 'event 5', '2024-05-05', '22:00:00', 5, 400, 300, 2500.00, 'concert',  105),
+(6, 'event 6', '2024-05-06', '22:00:00', 5, 400, 300, 2500.00, 'concert', 106),
+(7, 'event 7', '2024-05-07', '22:00:00', 5, 400, 300, 2500.00, 'concert', 107),
+(8, 'event 8', '2024-05-08', '22:00:00', 5, 400, 300, 2500.00, 'concert', 108),
+(9, 'event 9', '2024-05-09', '22:00:00', 5, 400, 300, 2500.00, 'concert', 109),
 (10, 'event 10', '2024-05-10', '22:00:00', 5, 400, 300, 2500.00, 'concert', 110);
 
 insert into customer (customer_id, customer_name, email, phone_number, booking_id)
@@ -72,11 +71,11 @@ values
 (2, 'jane smith', 'jane@example.com', '2345670002',102),
 (3, 'alice johnson', 'alice@example.com', '3456780003',103),
 (4, 'bob brown', 'bob@example.com', '4567890004', 104),
-(5, 'emily davis', 'emily@example.com', '5678900005', 105);
-(6, 'davis', 'davis@example.com', '5678900005', 106);
-(7, 'mike', 'mike@example.com', '5678900005', 107);
-(8, 'adam', 'adam@example.com', '5678900005', 108);
-(9, 'will jacks', 'will@example.com', '5678900005', 109);
+(5, 'emily davis', 'emily@example.com', '5678900005', 105),
+(6, 'davis', 'davis@example.com', '5678900005', 106),
+(7, 'mike', 'mike@example.com', '5678900005', 107),
+(8, 'adam', 'adam@example.com', '5678900005', 108),
+(9, 'will jacks', 'will@example.com', '5678900005', 109),
 (10, 'de villiars', 'devilliars@example.com', '5678900005', 110);
 
 
@@ -86,15 +85,16 @@ values
 (102, 2, 2, 3, 6000.00, "2024-6-20"),
 (103, 3, 3, 4, 7200.00, "2024-1-10"),
 (104, 4, 4, 2, 4400.00, "2024-9-20"),
-(105, 5, 5, 5, 12500.00, "2024-11-3");
-(106, 5, 5, 5, 12500.00, "2024-1-5");
-(107, 5, 5, 5, 12500.00, "2024-10-7");
-(108, 5, 5, 5, 12500.00, "2024-8-9");
-(109, 5, 5, 5, 12500.00, "2024-9-14");
+(105, 5, 5, 5, 12500.00, "2024-11-3"),
+(106, 5, 5, 5, 12500.00, "2024-1-5"),
+(107, 5, 5, 5, 12500.00, "2024-10-7"),
+(108, 5, 5, 5, 12500.00, "2024-8-9"),
+(109, 5, 5, 5, 12500.00, "2024-9-14"),
 (110, 5, 5, 5, 12500.00, "2024-12-23");
 
-alter table event add contraint event foreign key(booking_id) references booking(booking_id);
-alter table customer add contraint customer foreign key(booking_id) references booking(booking_id);
+alter table event add foreign key(booking_id) references booking(booking_id);
+
+alter table customer add foreign key(booking_id) references booking(booking_id);
 
 select * from event;
 
@@ -127,7 +127,7 @@ group by event_id, event_name
 order by total_tickets_sold desc
 limit 1;
 
-select event_id, event_name, sum(num_tickets) from booking`
+select event_id, event_name, sum(num_tickets) from booking
 group by event_id, event_name;
 
 select event_id, event_name
